@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grammar Galaxy Lab</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+  </head>
+  <body class="app gradient-mesh quiz-page">
+    <header class="app-header shadow-soft">
+      <div class="logo-lockup">
+        <div class="logo-badge glow">Aa</div>
+        <div>
+          <h1 class="app-title">Grammar Galaxy Lab</h1>
+          <p class="app-tagline">Quizzes and word sorting practice.</p>
+        </div>
+      </div>
+
+      <section class="header-learning-status" aria-label="Student status and progress">
+        <div class="header-status-row">
+          <p id="headerStudentBanner" class="ready-banner header-student-banner" hidden></p>
+          <div class="score-display header-score-display">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="scoreValue">0</span>
+          </div>
+        </div>
+
+        <section class="progress-section header-progress-section" aria-label="Session progress">
+          <p class="section-caption">Session progress</p>
+          <div class="progress-bar" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-label"><span id="progressCount">0</span>/10 activities completed</p>
+        </section>
+
+        <section class="header-badges-wrap" aria-label="Earned badges">
+          <p class="section-caption">Badges earned</p>
+          <div class="badges-display header-badges" id="badgesDisplay"></div>
+        </section>
+      </section>
+
+      <div class="header-actions">
+        <a class="btn ghost" href="home.html">Back to home</a>
+        <button class="btn ghost" id="labLogoutBtn" type="button" hidden>Log out</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar shadow-soft" aria-label="Choose level and topic">
+        <section class="card shadow-soft" id="labAuthCard">
+          <div class="card-header">
+            <h2 class="card-title">Student profile</h2>
+          </div>
+          <div class="auth-toggle">
+            <button class="chip small chip-active" data-auth-mode="new">New student</button>
+            <button class="chip small" data-auth-mode="returning">Returning student</button>
+          </div>
+          <form id="labAuthForm" class="auth-form">
+            <div class="auth-row" id="labNewStudentRow">
+              <label>Student name
+                <input type="text" id="labStudentName" />
+              </label>
+            </div>
+            <div class="auth-row" id="labReturningStudentRow" hidden>
+              <label>Returning student
+                <select id="labReturningStudentSelect"></select>
+              </label>
+            </div>
+            <div class="auth-row">
+              <label>Grade level
+                <select id="labStudentGrade" required>
+                  <option value="K-2">K–2</option>
+                  <option value="3-5">3–5</option>
+                  <option value="6-8">6–8</option>
+                  <option value="9-12">9–12</option>
+                </select>
+              </label>
+            </div>
+            <div class="auth-actions">
+              <button type="submit" class="btn primary" id="labAuthSubmitBtn">Save student</button>
+            </div>
+          </form>
+          <p id="labAuthMessage" class="feedback"></p>
+          <p id="labStudentBanner" class="ready-banner" hidden></p>
+        </section>
+
+        <section class="card shadow-soft" id="quizHistoryCard" hidden>
+          <div class="card-header">
+            <h2 class="card-title">Learning history</h2>
+          </div>
+          <div id="quizHistoryList" class="history-list"></div>
+        </section>
+
+        <section class="topic-section" aria-label="Grammar topics">
+          <p class="section-caption">Pick one topic</p>
+          <ul class="topic-list" id="topicList"></ul>
+        </section>
+
+      </aside>
+
+      <section class="content" aria-live="polite">
+        <section class="card topic-overview shadow-soft gradient-border" id="topicOverview">
+          <div class="card-header">
+            <h2 class="card-title" id="topicTitle">Pick a topic to begin</h2>
+            <span class="level-pill" id="topicLevel">Beginner</span>
+          </div>
+          <p class="card-body" id="topicDescription">
+            Choose a level and topic on the left. Then try the quick quiz and matching game to practice parts of speech.
+          </p>
+          <div class="accent-line"></div>
+        </section>
+
+        <div class="content-grid">
+          <section class="card quiz-card shadow-soft" aria-label="Quiz" id="quizCard">
+            <div class="card-header">
+              <h2 class="card-title">Quick Quiz</h2>
+              <p class="card-subtitle" id="questionTypeLabel">Multiple choice &amp; fill‑in‑the‑blank</p>
+            </div>
+
+            <div class="question-area" id="questionArea">
+              <p class="question-text" id="questionText">Select a topic to load your first question.</p>
+              <div class="options-list" id="optionsList" role="radiogroup"></div>
+              <div class="fib-wrapper" id="fibWrapper" hidden>
+                <label for="fibInput" class="fib-label">Type your answer:</label>
+                <input id="fibInput" class="fib-input" type="text" autocomplete="off" />
+              </div>
+              <p class="feedback" id="feedback" aria-live="assertive"></p>
+            </div>
+
+            <div class="quiz-controls">
+              <button class="btn primary" id="checkAnswerBtn" disabled>Check answer</button>
+              <button class="btn ghost" id="nextQuestionBtn" disabled>Next question</button>
+            </div>
+          </section>
+
+          <section class="card game-card shadow-soft" aria-label="Drag and drop matching game">
+            <div class="card-header">
+              <h2 class="card-title">Word Sort</h2>
+              <p class="card-subtitle">Drag each word into the correct bucket.</p>
+            </div>
+
+            <div class="game-layout">
+              <div class="word-bank" id="wordBank" aria-label="Word bank"></div>
+
+              <div class="buckets" aria-label="Parts of speech buckets">
+                <div class="bucket" data-part="noun">
+                  <h3 class="bucket-title">Nouns</h3>
+                  <p class="bucket-hint">person, place, thing, or idea</p>
+                  <div class="bucket-dropzone" id="nounBucket"></div>
+                </div>
+
+                <div class="bucket" data-part="verb">
+                  <h3 class="bucket-title">Verbs</h3>
+                  <p class="bucket-hint">action or a state of being</p>
+                  <div class="bucket-dropzone" id="verbBucket"></div>
+                </div>
+
+                <div class="bucket" data-part="adjective">
+                  <h3 class="bucket-title">Adjectives</h3>
+                  <p class="bucket-hint">modifies a noun or pronoun</p>
+                  <div class="bucket-dropzone" id="adjectiveBucket"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="game-controls">
+              <button class="btn primary" id="checkGameBtn">Check matches</button>
+              <button class="btn ghost" id="resetGameBtn">New words</button>
+              <p class="feedback" id="gameFeedback" aria-live="polite"></p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js?v=20260327d"></script>
+  </body>
+</html>

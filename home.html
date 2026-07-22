@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grammar Adventures</title>
+    <link rel="stylesheet" href="style.css?v=20260318b" />
+  </head>
+  <body class="app gradient-mesh">
+    <header class="app-header shadow-soft">
+      <div class="logo-lockup">
+        <div class="logo-badge glow">Aa</div>
+        <div>
+          <h1 class="app-title">Grammar Adventures</h1>
+          <p class="app-tagline">Choose your journey: board game or practice lab.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout single-column">
+      <section class="content home-cards-layout">
+        <section class="card shadow-soft">
+          <div class="card-header">
+            <h2 class="card-title">Pick an app</h2>
+          </div>
+          <div class="app-choice-grid">
+            <a class="app-choice-card" href="board.html">
+              <h3>Dino Grammar Quest</h3>
+              <p>Race your dinos around the board by answering grammar questions.</p>
+            </a>
+            <a class="app-choice-card" href="quiz.html">
+              <h3>Grammar Galaxy Lab</h3>
+              <p>Practice with quizzes and the Word Sort game.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="card shadow-soft parts-dino-card" aria-label="Parts of speech dinosaur guide">
+          <div class="card-header">
+            <h2 class="card-title">9 Parts of Speech</h2>
+            <p class="card-subtitle">Animated dinosaur guide</p>
+          </div>
+          <div class="parts-dino-grid">
+            <div class="parts-dino-item" data-pos="noun"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Noun</span></div>
+            <div class="parts-dino-item" data-pos="pronoun"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Pronoun</span></div>
+            <div class="parts-dino-item" data-pos="verb"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Verb</span></div>
+            <div class="parts-dino-item" data-pos="adjective"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Adjective</span></div>
+            <div class="parts-dino-item" data-pos="adverb"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Adverb</span></div>
+            <div class="parts-dino-item" data-pos="preposition"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Preposition</span></div>
+            <div class="parts-dino-item" data-pos="conjunction"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Conjunction</span></div>
+            <div class="parts-dino-item" data-pos="interjection"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Interjection</span></div>
+            <div class="parts-dino-item" data-pos="article"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Article</span></div>
+          </div>
+        </section>
+
+        <section class="card shadow-soft parts-definition-card" aria-live="polite" aria-label="Part of speech definition">
+          <div class="card-header">
+            <h2 class="card-title" id="partsDefTitle">Definition</h2>
+            <p class="card-subtitle" id="partsDefLabel">Click a part of speech</p>
+          </div>
+          <p class="card-body" id="partsDefBody">Select a dinosaur tile above to see the meaning of that part of speech.</p>
+        </section>
+      </section>
+    </main>
+    <script src="parts-card.js?v=20260318a"></script>
+  </body>
+</html>

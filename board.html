@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dino Grammar Quest</title>
+    <link rel="stylesheet" href="style.css?v=20260319p" />
+  </head>
+  <body class="app gradient-mesh board-setup-page">
+    <header class="app-header shadow-soft">
+      <div class="logo-lockup">
+        <div class="logo-badge glow">🦕</div>
+        <div>
+          <h1 class="app-title">Dino Grammar Quest</h1>
+          <p class="app-tagline">Roll, answer, and race your dinos to the finish.</p>
+        </div>
+      </div>
+      <a class="btn ghost" href="home.html">Back to home</a>
+    </header>
+
+    <main class="layout single-column">
+      <section class="content">
+        <section class="card shadow-soft" id="authCard">
+          <div class="card-header">
+            <h2 class="card-title">Player access</h2>
+          </div>
+          <div class="auth-toggle">
+            <button class="chip small chip-active" data-auth-mode="new">New players</button>
+            <button class="chip small" data-auth-mode="returning">Returning players</button>
+          </div>
+          <form id="authForm" class="auth-form">
+            <div class="auth-row" id="newPlayerRow">
+              <label>Player name
+                <input type="text" id="playerName" />
+              </label>
+            </div>
+            <div class="auth-row" id="returningPlayerRow" hidden>
+              <label>Returning player
+                <select id="returningPlayerSelect"></select>
+              </label>
+            </div>
+            <div class="auth-row">
+              <label>Grade level
+                <select id="playerGrade" required>
+                  <option value="K-2">K–2</option>
+                  <option value="3-5">3–5</option>
+                  <option value="6-8">6–8</option>
+                  <option value="9-12">9–12</option>
+                </select>
+              </label>
+            </div>
+            <div class="auth-row">
+              <label>Dino emoji
+                <select id="dinoEmoji" required></select>
+              </label>
+            </div>
+            <div class="auth-actions">
+              <button type="button" class="btn ghost" id="addPlayerBtn">Add Player</button>
+              <button type="button" class="btn secondary small" id="loadTestPlayersBtn">Load Test Players</button>
+              <button type="submit" class="btn primary">Start Jurassic Board</button>
+            </div>
+          </form>
+          <p id="authMessage" class="feedback"></p>
+          <div class="undo-remove-row" id="undoRemoveRow" hidden>
+            <span id="undoRemoveText"></span>
+            <button type="button" class="btn ghost small" id="undoRemoveBtn">Undo</button>
+          </div>
+          <div class="ready-banner" id="readyBanner" hidden>🦖 3 players are ready — time to start the game!</div>
+          <div class="signed-players" id="signedPlayers" aria-label="Signed players">
+            <p class="section-caption">Players in this game</p>
+            <ul class="signed-player-list" id="signedPlayersList"></ul>
+          </div>
+          <div id="playerSummary" class="card-body"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="board.js?v=20260319l"></script>
+  </body>
+</html>

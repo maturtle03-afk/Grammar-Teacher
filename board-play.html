@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jurassic Board Play</title>
+    <link rel="stylesheet" href="style.css?v=20260319ac" />
+  </head>
+  <body class="app gradient-mesh board-play-page">
+    <header class="app-header shadow-soft">
+      <div class="logo-lockup">
+        <div class="logo-badge glow">🦖</div>
+        <div>
+          <h1 class="app-title">Jurassic Board Play</h1>
+          <p class="app-tagline">Big board mode for dinosaur race gameplay.</p>
+        </div>
+      </div>
+      <a class="btn ghost" href="board.html">Back to setup</a>
+    </header>
+
+    <main class="layout single-column board-play-layout">
+      <section class="content">
+        <section class="card board-card shadow-soft" aria-label="Jurassic board" id="boardPlayCard">
+          <div class="card-header">
+            <h2 class="card-title" id="groupTitle">Board</h2>
+            <p class="card-subtitle" id="turnIndicator">Rolling order ready.</p>
+          </div>
+
+          <div class="player-list" id="playerList" aria-label="Player status"></div>
+
+          <div class="dice-area" aria-label="Dice controls">
+            <button class="btn primary" id="rollDiceBtn">Roll dino dice</button>
+            <button class="btn ghost" id="resetPlayBtn">Reset race</button>
+            <div class="dice-result" id="diceResult">Roll to move your dino.</div>
+          </div>
+
+          <div class="board-play-container">
+            <div class="dice-animation-area" id="diceAnimationArea"></div>
+            <div class="board-track board-play-track" id="boardTrack" aria-label="Board track"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <section class="turn-quiz-card" id="turnQuizCard" aria-live="polite" aria-hidden="true">
+      <div class="turn-quiz-head">
+        <p class="turn-quiz-kicker" id="turnQuizPlayer">Player challenge</p>
+        <p class="turn-quiz-timer" id="turnQuizTimer">30s</p>
+      </div>
+      <p class="turn-quiz-grade" id="turnQuizGrade">Grade level</p>
+      <h3 class="turn-quiz-question" id="turnQuizText">Answer to unlock your roll.</h3>
+      <p class="turn-quiz-type" id="turnQuizType">Multiple choice</p>
+      <div class="turn-quiz-options" id="turnQuizOptions"></div>
+      <div class="turn-quiz-input-wrap" id="turnQuizInputWrap">
+        <input
+          class="turn-quiz-input"
+          id="turnQuizInput"
+          type="text"
+          autocomplete="off"
+          placeholder="Type your answer"
+        />
+      </div>
+      <button class="btn primary turn-quiz-submit" id="turnQuizSubmit" type="button">Submit answer</button>
+      <p class="turn-quiz-feedback" id="turnQuizFeedback"></p>
+      <p class="turn-quiz-explanation" id="turnQuizExplanation" hidden></p>
+      <button class="btn ghost turn-quiz-continue" id="turnQuizContinue" type="button" hidden>
+        Continue now
+      </button>
+    </section>
+
+    <script src="board-play.js?v=20260319x"></script>
+  </body>
+</html>
