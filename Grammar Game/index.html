@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SECTION: Meta & Title -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grammar Adventures</title>
+
+    <!-- SECTION: Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- SECTION: Styles -->
+    <link rel="stylesheet" href="style.css?v=20260318b" />
+
+    <!-- SECTION: Drag & Drop Library (SortableJS) -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+  </head>
+  <body class="app gradient-mesh">
+    <div class="floating-shape shape-1" aria-hidden="true"></div>
+    <div class="floating-shape shape-2" aria-hidden="true"></div>
+
+    <!-- SECTION: App Shell -->
+    <header class="app-header shadow-soft">
+      <div class="logo-lockup">
+        <div class="logo-badge glow">Aa</div>
+        <div>
+          <h1 class="app-title">Grammar Galaxy</h1>
+          <p class="app-tagline">Train your parts of speech skills through quizzes and mini‑games.</p>
+        </div>
+      </div>
+
+      <div class="age-toggle" aria-label="Choose difficulty" role="group">
+        <button class="chip chip-active" data-age="kids">Kids</button>
+        <button class="chip" data-age="teens">Teens</button>
+        <button class="chip" data-age="adults">Adults</button>
+      </div>
+    </header>
+
+    <main class="layout single-column">
+      <section class="content home-cards-layout">
+        <section class="card shadow-soft">
+          <div class="card-header">
+            <h2 class="card-title">Pick an app</h2>
+          </div>
+          <div class="app-choice-grid">
+            <a class="app-choice-card" href="board.html">
+              <h3>Dino Grammar Quest</h3>
+              <p>Race your dinos around the board by answering grammar questions.</p>
+            </a>
+            <a class="app-choice-card" href="quiz.html">
+              <h3>Grammar Galaxy Lab</h3>
+              <p>Practice with quizzes and the Word Sort game.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="card shadow-soft parts-dino-card" aria-label="Parts of speech dinosaur guide">
+          <div class="card-header">
+            <h2 class="card-title">9 Parts of Speech</h2>
+            <p class="card-subtitle">Animated dinosaur guide</p>
+          </div>
+          <div class="parts-dino-grid">
+            <div class="parts-dino-item" data-pos="noun"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Noun</span></div>
+            <div class="parts-dino-item" data-pos="pronoun"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Pronoun</span></div>
+            <div class="parts-dino-item" data-pos="verb"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Verb</span></div>
+            <div class="parts-dino-item" data-pos="adjective"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Adjective</span></div>
+            <div class="parts-dino-item" data-pos="adverb"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Adverb</span></div>
+            <div class="parts-dino-item" data-pos="preposition"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Preposition</span></div>
+            <div class="parts-dino-item" data-pos="conjunction"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Conjunction</span></div>
+            <div class="parts-dino-item" data-pos="interjection"><span class="parts-dino-emoji">🦖</span><span class="parts-dino-label">Interjection</span></div>
+            <div class="parts-dino-item" data-pos="article"><span class="parts-dino-emoji">🦕</span><span class="parts-dino-label">Article</span></div>
+          </div>
+        </section>
+
+        <section class="card shadow-soft parts-definition-card" aria-live="polite" aria-label="Part of speech definition">
+          <div class="card-header">
+            <h2 class="card-title" id="partsDefTitle">Definition</h2>
+            <p class="card-subtitle" id="partsDefLabel">Click a part of speech</p>
+          </div>
+          <p class="card-body" id="partsDefBody">Select a dinosaur tile above to see the meaning of that part of speech.</p>
+        </section>
+      </section>
+
+      <!-- SECTION: Sidebar - Levels & Topics -->
+      <aside class="sidebar shadow-soft" aria-label="Choose level and topic">
+        <h2 class="sidebar-title">Choose your path</h2>
+
+        <div class="score-badges" aria-label="Score and badges">
+          <div class="score-display">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="scoreValue">0</span>
+          </div>
+          <div class="badges-display" id="badgesDisplay" aria-label="Earned badges"></div>
+        </div>
+
+        <div class="level-switcher" role="tablist" aria-label="Grammar levels">
+          <button class="level-tab level-tab-active" data-level="beginner" role="tab" aria-selected="true">
+            Beginner
+          </button>
+          <button class="level-tab" data-level="intermediate" role="tab" aria-selected="false">
+            Intermediate
+          </button>
+          <button class="level-tab" data-level="advanced" role="tab" aria-selected="false">
+            Advanced
+          </button>
+        </div>
+
+        <section class="topic-section" aria-label="Grammar topics">
+          <p class="section-caption">Topics</p>
+          <ul class="topic-list" id="topicList">
+            <!-- Populated by script.js -->
+          </ul>
+        </section>
+
+        <section class="progress-section" aria-label="Session progress">
+          <p class="section-caption">Session progress</p>
+          <div class="progress-bar" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p class="progress-label"><span id="progressCount">0</span>/5 questions answered</p>
+        </section>
+      </aside>
+
+      <!-- SECTION: Main Content -->
+      <section class="content" aria-live="polite">
+        <!-- SECTION: Board Game Area -->
+        <section class="card board-card shadow-soft" aria-label="Grammar board game" id="boardCard">
+          <div class="card-header">
+            <h2 class="card-title">Dino Grammar Quest</h2>
+            <p class="card-subtitle" id="turnIndicator">Set up your dino explorers to begin.</p>
+          </div>
+
+          <div class="board-setup">
+            <div class="player-select" aria-label="Select number of players">
+              <span class="player-select-label">Players</span>
+              <div class="player-select-buttons">
+                <button class="chip small chip-active" data-player-count="1">1</button>
+                <button class="chip small" data-player-count="2">2</button>
+                <button class="chip small" data-player-count="3">3</button>
+              </div>
+            </div>
+
+             <div class="player-list" id="playerList" aria-label="Player status"></div>
+
+             <div class="player-inputs" id="playerInputs" aria-label="Player details"></div>
+          </div>
+
+          <div class="dice-area" aria-label="Dice roll">
+            <button class="btn primary" id="rollDiceBtn">Roll dino dice</button>
+            <div class="dice-result" id="diceResult">Roll to start your adventure.</div>
+          </div>
+
+          <div class="board-track" id="boardTrack" aria-label="Board track">
+            <!-- Track cells rendered by script.js -->
+          </div>
+        </section>
+
+        <!-- SECTION: Topic Overview -->
+        <section class="card topic-overview shadow-soft gradient-border" id="topicOverview">
+          <div class="card-header">
+            <h2 class="card-title" id="topicTitle">Pick a topic to begin</h2>
+            <span class="level-pill" id="topicLevel">Beginner</span>
+          </div>
+          <p class="card-body" id="topicDescription">
+            Choose a level and topic on the left. Then try the quick quiz and matching game to practice parts of speech.
+          </p>
+          <div class="accent-line"></div>
+        </section>
+
+        <div class="content-grid">
+          <!-- SECTION: Quiz Area -->
+          <section class="card quiz-card shadow-soft" aria-label="Quiz" id="quizCard">
+            <div class="card-header">
+              <h2 class="card-title">Quick Quiz</h2>
+              <p class="card-subtitle" id="questionTypeLabel">Multiple choice &amp; fill‑in‑the‑blank</p>
+            </div>
+
+            <div class="question-area" id="questionArea">
+              <!-- Question text -->
+              <p class="question-text" id="questionText">
+                Select a topic to load your first question.
+              </p>
+
+              <!-- Multiple choice options -->
+              <div class="options-list" id="optionsList" role="radiogroup"></div>
+
+              <!-- Fill in the blank input -->
+              <div class="fib-wrapper" id="fibWrapper" hidden>
+                <label for="fibInput" class="fib-label">Type your answer:</label>
+                <input id="fibInput" class="fib-input" type="text" autocomplete="off" />
+              </div>
+
+              <p class="feedback" id="feedback" aria-live="assertive"></p>
+            </div>
+
+            <div class="quiz-controls">
+              <button class="btn primary" id="checkAnswerBtn" disabled>Check answer</button>
+              <button class="btn ghost" id="nextQuestionBtn" disabled>Next question</button>
+            </div>
+          </section>
+
+          <!-- SECTION: Drag & Drop Game -->
+          <section class="card game-card shadow-soft" aria-label="Drag and drop matching game">
+            <div class="card-header">
+              <h2 class="card-title">Word Sort</h2>
+              <p class="card-subtitle">Drag each word into the correct bucket.</p>
+            </div>
+
+            <div class="game-layout">
+              <div class="word-bank" id="wordBank" aria-label="Word bank">
+                <!-- Words inserted via script.js -->
+              </div>
+
+              <div class="buckets" aria-label="Parts of speech buckets">
+                <div class="bucket" data-part="noun">
+                  <h3 class="bucket-title">Nouns</h3>
+                  <p class="bucket-hint">person, place, thing, or idea</p>
+                  <div class="bucket-dropzone" id="nounBucket"></div>
+                </div>
+
+                <div class="bucket" data-part="verb">
+                  <h3 class="bucket-title">Verbs</h3>
+                  <p class="bucket-hint">action or a state of being</p>
+                  <div class="bucket-dropzone" id="verbBucket"></div>
+                </div>
+
+                <div class="bucket" data-part="adjective">
+                  <h3 class="bucket-title">Adjectives</h3>
+                  <p class="bucket-hint">modifies a noun or pronoun</p>
+                  <div class="bucket-dropzone" id="adjectiveBucket"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="game-controls">
+              <button class="btn primary" id="checkGameBtn">Check matches</button>
+              <button class="btn ghost" id="resetGameBtn">New words</button>
+              <p class="feedback" id="gameFeedback" aria-live="polite"></p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Tip: Try the same topic at different levels to see how the questions change.</p>
+    </footer>
+
+     <!-- SECTION: Instruction Modal -->
+     <div class="modal-backdrop" id="instructionModal" hidden>
+       <div class="modal">
+         <h2 class="modal-title" id="modalTitle">Game instructions</h2>
+         <p class="modal-body" id="modalBody"></p>
+         <button class="btn primary" id="modalCloseBtn">Got it</button>
+       </div>
+     </div>
+
+     <!-- SECTION: Scripts -->
+    <script src="script.js"></script>
+    <script src="parts-card.js?v=20260318a"></script>
+  </body>
+</html>
